@@ -2,7 +2,7 @@ import psycopg2
 
 conn = psycopg2.connect(
     dbname="auto_service",
-    user="admin",
+    user="adminn",
     password="admin123",
     host="localhost",
     port="5432"
@@ -11,9 +11,7 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 
-# =========================
-# CREATE TABLES
-# =========================
+
 
 cur.execute("""
 CREATE TABLE IF NOT EXISTS clients (
@@ -50,9 +48,7 @@ CREATE TABLE IF NOT EXISTS repairs (
 conn.commit()
 
 
-# =========================
-# INSERT DATA
-# =========================
+
 
 cur.executemany("""
 INSERT INTO clients(company_name, bank_account, phone, contact_person, address)
@@ -102,9 +98,7 @@ VALUES (%s,%s,%s,%s,%s,%s)
 conn.commit()
 
 
-# =========================
-# SQL QUERIES
-# =========================
+
 
 queries = {
 
@@ -165,9 +159,7 @@ GROUP BY c.brand;
 }
 
 
-# =========================
-# PRINT FUNCTION
-# =========================
+
 
 def print_table(title, rows):
     print("\n" + "="*60)
@@ -177,9 +169,7 @@ def print_table(title, rows):
         print(row)
 
 
-# =========================
-# EXECUTE QUERIES
-# =========================
+
 
 for title, q in queries.items():
     cur.execute(q)
